@@ -13,10 +13,21 @@
 @end
 
 @implementation AppDelegate
-            
 
+NSString *printIntroductions(NSString *name) {
+    NSString *myName = @"Margaret";
+    NSString *introduction = [NSString stringWithFormat:@"My name is %@", myName];
+    NSString *japaneseIntroduction = [myName stringByAppendingString:@" to moushimasu"];
+    NSLog(@"%@, or in Japanese we say %@", introduction, japaneseIntroduction);
+    //NSString *fullIntroduction = "%@, or in Japanese we say %@", introduction, japaneseIntroduction;
+    // ??? I don't know what to return here, so I just ret japaneseIntroduction
+    //NSLog(@"%@ THIS IS IT", japaneseIntroduction);
+    return japaneseIntroduction;
+}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    NSString *myName = @"Margaret";
+    // call printIntroduction with myName as arg
+    printIntroductions(myName);
     return YES;
 }
 
