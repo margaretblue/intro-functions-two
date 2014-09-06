@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  intro-functions-two
 //
-//  Created by MARGARET MORRIS on 9/3/14.
+//  Created by MARGARET MORRIS on 9/2/14.
 //  Copyright (c) 2014 Margaret Blue. All rights reserved.
 //
 
@@ -14,20 +14,45 @@
 
 @implementation AppDelegate
 
-NSString *printIntroductions(NSString *name) {
-    NSString *myName = @"Margaret";
+- (NSString *)printIntro:(NSString *)myName {
+    // found a stackoverflow answer to what I was doing wrong.
+    //Initially my program worked when I was just doing simple statements and functions.
+    //once I moved to Step 3 where it said to make it an instance method, I got "Implicit declaration of a function..." errors
+    //you can't just call printIntro(myName) anymore since its no longer a function, now an instance method.
+    // so you have to reference its class (which is "self". In chapter 2 in the Car Valet app, they had different class names.  I think.
+    //http://stackoverflow.com/questions/8994955/warning-implicit-declaration-of-function-is-invalid-in-c99-please-help
+    
+    //NSString *myName = @"Margaret";
+    //?????? I cantdeclare a value then set it later??? I get a "Redefinition" error ?????
+    //myName = @"Margaret";
     NSString *introduction = [NSString stringWithFormat:@"My name is %@", myName];
-    NSString *japaneseIntroduction = [myName stringByAppendingString:@" to moushimasu"];
-    NSLog(@"%@, or in Japanese we say %@", introduction, japaneseIntroduction);
-    //NSString *fullIntroduction = "%@, or in Japanese we say %@", introduction, japaneseIntroduction;
-    // ??? I don't know what to return here, so I just ret japaneseIntroduction
-    //NSLog(@"%@ THIS IS IT", japaneseIntroduction);
-    return japaneseIntroduction;
+    NSString *japaneseIntro = [myName stringByAppendingString:@" to moushimasu"];
+    NSLog(@"%@, or in Japanese we say %@", introduction, japaneseIntro);
+    return japaneseIntro;
+    //???what do i even return here????
 }
+//see iOS book chapter 2
+
+- (NSInteger)countDownTillIntro:(NSInteger)numberOfDays {
+    if (numberOfDays == 0) {
+        NSLog(@"The time has come");
+    } else if (numberOfDays ){
+    } else {
+        NSLog(@"%d days to go", numberOfDays);
+        NSInteger oneDayLess = numberOfDays - 1;
+        //message with method duh
+        //countDownTillIntro(oneDayLess);
+        [self countDownTillIntro:oneDayLess];
+    }
+    return numberOfDays;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    NSString *myName = @"Margaret";
-    // call printIntroduction with myName as arg
-    printIntroductions(myName);
+    NSString *myName = @"Margaret Morris";
+    [self countDownTillIntro:(NSInteger)4];
+    // call printIntro with myName as arg
+    [self printIntro:(NSString *)myName];
+    // call printIntro with myName as arg
     return YES;
 }
 
