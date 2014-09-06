@@ -36,7 +36,6 @@
 - (NSInteger)countDownTillIntro:(NSInteger)numberOfDays {
     if (numberOfDays == 0) {
         NSLog(@"The time has come");
-    } else if (numberOfDays ){
     } else {
         NSLog(@"%d days to go", numberOfDays);
         NSInteger oneDayLess = numberOfDays - 1;
